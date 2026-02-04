@@ -5,13 +5,13 @@ import Image from "next/image";
 import { useState } from "react";
 import { Menu } from "lucide-react"; // আইকন
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 
 
 const NavItems = () => (
     <>
-        <Link href="#" className="font- text-secondary hover:text-primary    transition-colors">Home</Link>
+        <Link href="/" className="font- text-secondary hover:text-primary    transition-colors">Home</Link>
         <Link href="#" className="font- text-secondary hover:text-primary transition-colors">About</Link>
         <Link href="#" className="font- text-secondary hover:text-primary transition-colors">Contact</Link>
     </>
