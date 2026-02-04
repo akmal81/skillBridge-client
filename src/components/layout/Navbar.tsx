@@ -11,15 +11,15 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 
 const NavItems = () => (
     <>
-        <Link href="#" className="hover:text-primary transition-colors">Home</Link>
-        <Link href="#" className="hover:text-primary transition-colors">About</Link>
-        <Link href="#" className="hover:text-primary transition-colors">Contact</Link>
+        <Link href="#" className="font- text-secondary hover:text-primary    transition-colors">Home</Link>
+        <Link href="#" className="font- text-secondary hover:text-primary transition-colors">About</Link>
+        <Link href="#" className="font- text-secondary hover:text-primary transition-colors">Contact</Link>
     </>
 );
 
 export default function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false); // উদাহরণস্বরূপ
-    const user = { name: "User", image: "" };
+    const user = { name: "Akmal", image: "https://i.ibb.co.com/hJQVk7sJ/profile.jpg" };
 
 
 
@@ -28,19 +28,26 @@ export default function Navbar() {
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
 
                 {/* desktop menu */}
-                <div className="flex items-center gap-8">
+                <div className="flex items-center gap-16">
                     <Link href="/" className="flex items-center">
-                        <Image
+                        {/* <Image
                             src="https://i.ibb.co.com/9HsnfTCh/skillbridge-Logo.jpg"
                             alt="Skillbridge Logo"
                             width={140}
                             height={35}
                             priority
-                        />
+                        /> */}
+
+                        <h1 className="text-primary font-bold text-4xl">
+                            Skill
+                            <span className="text-secondary">
+                                bridge
+                                </span>
+                                <span className="">.</span></h1>
                     </Link>
 
 
-                    <div className="hidden md:flex items-center gap-6  mt-2 text-sm font-medium">
+                    <div className="hidden md:flex items-center gap-6 mt-3  text-sm font-medium">
                         <NavItems />
                     </div>
                 </div>
@@ -52,16 +59,45 @@ export default function Navbar() {
                     <div className="hidden sm:flex items-center gap-4">
                         {isLoggedIn ? (
                             <div className="flex items-center gap-3">
+                                
                                 <span className="hidden text-sm font-medium lg:inline-block">{user.name}</span>
                                 <Avatar>
-                                    <AvatarImage src={user.image} />
-                                    <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                                     <Image
+                            src={user.image}
+                            alt="Skillbridge Logo"
+                            width={50}
+                            height={50}
+                            priority
+                        />
+                                    {/* <AvatarImage src={user.image} />
+                                    <AvatarFallback>{user.name.charAt(0)}</AvatarFallback> */}
                                 </Avatar>
+                                {/* logout button */}
+                                <Button
+                                        className="
+                                        rounded-full 
+                                        hover:bg-primary 
+                                        hover:text-primary-foreground
+                                        font-normal
+                                        text-sm
+                                        " 
+                                        variant="ghost">
+                                        Logout
+                                    </Button>
                             </div>
                         ) : (
                             <div className="flex items-center gap-2">
-                                <Link href="/login"><Button variant="ghost">Login</Button></Link>
-                                <Link href="/register"><Button >Register</Button></Link>
+                                <Link href="/login">
+                                    <Button
+                                        className="rounded-full hover:bg-primary hover:text-primary-foreground" variant="ghost" size="lg">
+                                        Login
+                                    </Button>
+                                </Link>
+                                <Link href="/register">
+                                    <Button className="rounded-full bg-secondary hover:bg-primary" size="lg">
+                                        Register
+                                    </Button>
+                                </Link>
                             </div>
                         )}
                     </div>
@@ -70,7 +106,9 @@ export default function Navbar() {
                     <div className="md:hidden">
                         <Sheet>
                             <SheetTrigger asChild>
-                                <Button variant="ghost" size="icon">
+                                <Button 
+                                className="hover:bg-primary-foreground"
+                                variant="ghost" size="icon">
                                     <Menu className="h-6 w-6" />
                                 </Button>
                             </SheetTrigger>
@@ -80,7 +118,7 @@ export default function Navbar() {
                                         <Image
                                             src="https://i.ibb.co.com/9HsnfTCh/skillbridge-Logo.jpg"
                                             alt="Skillbridge Logo"
-                                            width={140} // লোগো সাইজ সামান্য এডজাস্ট করা হয়েছে
+                                            width={140}
                                             height={35}
                                             priority
                                         />
@@ -93,10 +131,22 @@ export default function Navbar() {
                                     {!isLoggedIn && (
                                         <div className="flex flex-col gap-2">
                                             <Link href="/login" className="w-full">
-                                                <Button variant="outline" className="w-full">Login</Button>
+                                                <Button 
+                                                size="lg"
+                                                variant="outline" 
+                                                className="w-full
+                                                rounded-full hover:bg-primary hover:text-primary-foreground
+
+                                                
+                                                ">Login</Button>
                                             </Link>
                                             <Link href="/register" className="w-full">
-                                                <Button className="w-full">Register</Button>
+                                                <Button 
+                                                size="lg"
+                                                className="w-full
+                                                rounded-full bg-secondary hover:bg-primary
+
+                                                ">Register</Button>
                                             </Link>
                                         </div>
                                     )}
