@@ -117,8 +117,8 @@ export default function StudentReviews() {
 
                         {/* Navigation Arrows */}
                         <div className="hidden md:block">
-                            <CarouselPrevious className="-left-12 bg-white" />
-                            <CarouselNext className="-right-12 bg-white" />
+                            <CarouselPrevious className="-left-12 bg-primary-foreground hover:bg-primary hover:text-white" />
+                            <CarouselNext className="-right-12 bg-primary-foreground hover:bg-primary hover:text-white" />
                         </div>
                     </Carousel>
                 </div>

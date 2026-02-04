@@ -133,8 +133,8 @@ export default function TutorSlider() {
                     </CarouselContent>
 
                     {/* Slider Controls */}
-                    <CarouselPrevious className="-left-4 md:-left-12 h-12 w-12 bg-white shadow-lg" />
-                    <CarouselNext className="-right-4 md:-right-12 h-12 w-12 bg-white shadow-lg" />
+                    <CarouselPrevious className="-left-4 md:-left-12 h-12 w-12 bg-primary-foreground hover:bg-primary hover:text-white shadow-lg " />
+                    <CarouselNext className="-right-4 md:-right-12 h-12 w-12 bg-primary-foreground hover:bg-primary hover:text-white shadow-lg " />
                 </Carousel>
             </div>
         </section>
