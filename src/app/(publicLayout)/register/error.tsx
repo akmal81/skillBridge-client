@@ -12,7 +12,7 @@ export default function AboutError({
     useEffect(() => {
         console.log(error)
 
-    }, [])
+    }, [error])
 
     return (
         <div className="h-screen flex  gap-4 flex-col justify-center items-center text-center space-x-4 px-4">
@@ -21,8 +21,8 @@ export default function AboutError({
                 text-2xl 
                 
                 " >Something Went Wrong:please try again later</h1>
-                <Button variant="destructive" onClick={() => reset}
-                    className="bg-primary mt-8"
+                <Button onClick={() => reset}
+                    className="bg-primary hover:bg-secondary mt-8"
                     >Retry</Button>
             </div>
         </div>

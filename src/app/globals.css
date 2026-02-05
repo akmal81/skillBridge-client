@@ -83,7 +83,7 @@
 
 :root {
     /* ১. Primary Color: #002347 (Deep Navy Blue) */
-    
+
     --primary: oklch(0.24 0.04 256.85);
     --primary-foreground: oklch(0.98 0 0); /* সাদা টেক্সট প্রাইমারি বাটনের জন্য */
 
@@ -102,7 +102,7 @@
     /* ৫. Muted & Card Colors (Off-white / Light Gray) */
     --muted: oklch(0.97 0.005 240.0); /* #F8F9FA */
     --muted-foreground: oklch(0.51 0.02 240.0); /* #6C757D (Light Text) */
-    
+
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.21 0.01 220.0);
 
@@ -116,8 +116,15 @@
 
     /* Radius */
     --radius: 0.625rem;
+    --sidebar: hsl(0 0% 98%);
+    --sidebar-foreground: hsl(240 5.3% 26.1%);
+    --sidebar-primary: hsl(240 5.9% 10%);
+    --sidebar-primary-foreground: hsl(0 0% 98%);
+    --sidebar-accent: hsl(240 4.8% 95.9%);
+    --sidebar-accent-foreground: hsl(240 5.9% 10%);
+    --sidebar-border: hsl(220 13% 91%);
+    --sidebar-ring: hsl(217.2 91.2% 59.8%);
   }
-
 
 /* .dark {
   --background: oklch(0.145 0 0);
@@ -160,4 +167,15 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.dark {
+  --sidebar: hsl(240 5.9% 10%);
+  --sidebar-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-primary: hsl(224.3 76.3% 48%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(240 3.7% 15.9%);
+  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-border: hsl(240 3.7% 15.9%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }

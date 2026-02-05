@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 
 
-export default function AboutError({
+export default function Error({
     error, reset
 }: { error: Error & { digest?: string }; reset: () => void }) {
 

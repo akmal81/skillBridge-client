@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 
 
-export default function AboutError({
+export default function Error({
     error, reset
 }: { error: Error & { digest?: string }; reset: () => void }) {
 
@@ -22,7 +22,7 @@ export default function AboutError({
                 
                 " >Something Went Wrong:please try again later</h1>
                 <Button variant="destructive" onClick={() => reset}
-                    className="bg-primary mt-8"
+                    className="bg-primary hover:bg-secondary mt-8"
                     >Retry</Button>
             </div>
         </div>
