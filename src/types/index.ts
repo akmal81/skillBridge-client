@@ -1,2 +1,5 @@
-export type{Routes} from './routes.type'
-export type{ UserData} from './Session.type'
+export type { Routes } from './routes.type'
+export type { UserData } from './Session.type'
+export type { Tutor } from './tutor.type'
+export type { SearchParams } from './searchParams.type'
+export type { ServiceOption } from './serviceOption.type'

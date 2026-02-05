@@ -44,6 +44,8 @@ export function AppSidebar({ user, ...props }: { user: { role: string } & React.
 
 
 
+
+
   return (
     <Sidebar {...props} className="border-r-0 shadow-xl">
       <SidebarHeader className="h-16 flex items-center px-6 border-b">
@@ -74,6 +76,7 @@ export function AppSidebar({ user, ...props }: { user: { role: string } & React.
                               : "text-muted-foreground hover:bg-secondary hover:text-primary"
                           )}
                         >
+                          {/* <span className="text-sm font-medium">{item.icon}</span> */}
                           <span className="text-sm font-medium">{item.title}</span>
                         </Link>
                       </SidebarMenuButton>

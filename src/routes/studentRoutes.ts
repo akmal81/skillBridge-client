@@ -1,3 +1,4 @@
+import { CalendarCheck, User } from "lucide-react";
 
 export const StudentRoutes = [
     {
@@ -7,10 +8,12 @@ export const StudentRoutes = [
             {
                 title: "Profile",
                 url: "#",
+                icon:User
             },
             {
                 title: "Bookings",
                 url: "#",
+                icon:CalendarCheck
             },
           
         ],

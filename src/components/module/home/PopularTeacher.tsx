@@ -9,8 +9,9 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Star, CheckCircle } from "lucide-react";
+import { Tutor } from "@/types";
 
-const tutors = [
+/* const tutors = [
 
    
 
@@ -61,9 +62,9 @@ const tutors = [
         image: "https://i.ibb.co.com/sdHs6L94/tutor-1.jpg",
         isVerified: true,
     },
-];
+]; */
 
-export default function TutorSlider() {
+export default function TutorSlider({tutors}:{tutors:Tutor[]}) {
     return (
         <section className="py-20 container mx-auto px-5">
             <div className="text-center mb-12">
@@ -82,7 +83,7 @@ export default function TutorSlider() {
                     className="w-full"
                 >
                     <CarouselContent>
-                        {tutors.map((tutor) => (
+                        {tutors.map((tutor:Tutor) => (
                             <CarouselItem key={tutor.id} className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
                                 <div className="p-2">
                                     <Card className="border-none shadow-md hover:shadow-xl transition-all hover:-translate-y-2 duration-300 rounded-3xl overflow-hidden">
@@ -101,9 +102,9 @@ export default function TutorSlider() {
                                             <div className="p-6 text-center">
                                                 <div className="flex items-center justify-center gap-1 mb-1">
                                                     <h3 className="font-bold text-xl">{tutor.name}</h3>
-                                                    {tutor.isVerified && (
+                                                    
                                                         <CheckCircle className="h-4 w-4 text-blue-500 fill-blue-500/10" />
-                                                    )}
+                                                    
                                                 </div>
                                                 <p className="text-sm text-primary font-medium mb-3">
                                                     {tutor.subject}
@@ -113,7 +114,7 @@ export default function TutorSlider() {
                                                     <div className="flex items-center text-yellow-500">
                                                         <Star className="h-4 w-4 fill-yellow-500" />
                                                         <span className="ml-1 text-sm font-bold text-foreground">
-                                                            {tutor.rating}
+                                                            {tutor.avg_rating}
                                                         </span>
                                                     </div>
                                                     <span className="text-xs text-muted-foreground border-l pl-2">

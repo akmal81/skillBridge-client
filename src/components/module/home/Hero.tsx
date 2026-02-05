@@ -9,6 +9,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { CheckCircle2,Search, SearchIcon} from "lucide-react";
+import HeroSearch from "./search";
 
 export default function Hero() {
     return (
@@ -30,47 +31,7 @@ export default function Hero() {
 
                     {/* search and dropdown */}
                     {/* Search Bar Container */}
-                    <div className="mt-10 w-full max-w-2xl bg-white dark:bg-card p-2 pl-4 rounded-full shadow-lg border flex items-center justify-between gap-2">
-
-                        {/* Left Side: Select + Input Group */}
-                        <div className="flex items-center gap-2 flex-1">
-                            {/* Subject Dropdown */}
-                            <Select>
-                                <SelectTrigger className="w-fit h-12 border-none  focus:ring-0 rounded-full gap-2">
-                                    <SelectValue placeholder="Select" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="web">Subject</SelectItem>
-                                    <SelectItem value="price">Price</SelectItem>
-                                    <SelectItem value="rating">Rating</SelectItem>
-                                </SelectContent>
-                            </Select>
-
-                            {/* Vertical Divider */}
-                            <div className="h-6 w-[1px] bg-border hidden md:block" />
-
-                            {/* Search Input Field */}
-                            <div className="relative flex-1">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                                <Input
-                                    type="text"
-                                    placeholder="Search"
-                                    className="w-full pl-12 pr-4 py-2 border-none shadow-none outline-none text-sm bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
-                                    
-                                />
-                            </div>
-                        </div>
-
-                        {/* Right Side: Search Button */}
-                        <Button
-                            size="icon"
-                            className=" rounded-full hidden md:flex bg-secondary  hover:bg-primary h-16 w-16 shrink-0"
-                        >
-                            <SearchIcon className="h-12 w-12" />
-                        </Button>
-
-                      
-                    </div>
+                <HeroSearch/>
 
                     
                     <Button className="w-full mt-3 md:hidden bg-secondary hover:bg-primary rounded-full">
@@ -100,7 +61,7 @@ export default function Hero() {
                         src="https://i.ibb.co.com/Xrrf0hQT/Hero.png"
                         alt="Skillbridge Hero"
                         fill
-                        className="object-contain" 
+                        className="object-contain shadow-" 
                         priority
                     />
                 </div>

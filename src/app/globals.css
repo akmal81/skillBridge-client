@@ -92,7 +92,8 @@
     --secondary-foreground: oklch(0.98 0 0);
 
     /* ৩. Accent Color: #FFC107 (Amber) */
-    --accent: oklch(0.84 0.18 80.0);
+    --accent: oklch(96.412% 0.01864 243.128);
+    /* --accent: oklch(0.84 0.18 80.0); */
     --accent-foreground: oklch(0.14 0 0);
 
     /* ৪. Background & Foreground */
