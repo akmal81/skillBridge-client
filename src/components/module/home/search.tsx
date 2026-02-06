@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Button } from "@/components/ui/button";
@@ -13,7 +12,7 @@ import {
 } from "@/components/ui/select";
 import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 
 export default function HeroSearch() {
@@ -21,23 +20,17 @@ export default function HeroSearch() {
     const router = useRouter()
     const [searchType, setSearchType] = useState("subject");
     const [searchValue, setSearchValue] = useState("");
-  
-
 
     const handleSearch = async () => {
-        if(!searchValue.trim()) return; //if empty no params
+        if (!searchValue.trim()) return; //if empty no params
 
-        const params = new URLSearchParams();
+        const params = new URLSearchParams(); //search params er jonno url ?subject=math
 
         params.append(searchType.toString(), searchValue.toString())
-        router.push(`/tutors?${params.toString()}`)
+        router.push(`/tutors?${params.toString()}`) //the page where searh result will show
 
-        console.log("button clieck")
+        
     }
-     
-
-
-
 
     return (
         <div className="mt-10 w-full max-w-2xl bg-white dark:bg-card p-2 pl-4 rounded-full shadow-lg border flex items-center justify-between gap-2">
@@ -46,15 +39,15 @@ export default function HeroSearch() {
             <div className="flex items-center gap-2 flex-1">
                 {/* Subject Dropdown */}
                 <Select
-                onValueChange={(value)=>setSearchType(value)} 
-                defaultValue={searchType}
+                    onValueChange={(value) => setSearchType(value)}
+                    defaultValue={searchType}
                 >
                     <SelectTrigger className="w-fit h-12 border-none  focus:ring-0 rounded-full gap-2">
                         <SelectValue placeholder="Search by" />
                     </SelectTrigger>
                     <SelectContent >
                         <SelectItem className="hover:text-primary-foreground" value="subject">Subject</SelectItem>
-                        <SelectItem className="hover:text-primary-foreground"  value="price">Price</SelectItem>
+                        <SelectItem className="hover:text-primary-foreground" value="price">Price</SelectItem>
                         <SelectItem className="hover:text-primary-foreground" value="rating">Rating</SelectItem>
                     </SelectContent>
                 </Select>
@@ -69,7 +62,7 @@ export default function HeroSearch() {
                         type="text"
                         placeholder={`Search by ${searchType}`}
                         value={searchValue}
-                        onChange={(e)=>setSearchValue(e.target.value)}
+                        onChange={(e) => setSearchValue(e.target.value)}
                         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                         className="w-full pl-12 pr-4 py-2 border-none shadow-none outline-none text-sm bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
 
@@ -79,9 +72,9 @@ export default function HeroSearch() {
 
             {/* Right Side: Search Button */}
             <Button
-            onClick={handleSearch}
+                onClick={handleSearch}
                 size="icon"
-                className=" rounded-full hidden md:flex bg-secondary  hover:bg-primary h-16 w-16 shrink-0"
+                className="cursor-pointer rounded-full hidden md:flex bg-secondary  hover:bg-primary h-16 w-16 shrink-0"
             >
                 <SearchIcon className="h-12 w-12" />
             </Button>

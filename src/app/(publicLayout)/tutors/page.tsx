@@ -10,9 +10,7 @@ interface TutorPageProps {
 export default async function SearchTutor(
     { searchParams }: TutorPageProps
 ) {
-
-    const params = await searchParams;
-console.log(params.subject)
+    const params = await searchParams; //get params from url "subject=math"
     const { data } = await tutorService.getTutors(
         {
             subject: params.subject ||"",
@@ -23,8 +21,6 @@ console.log(params.subject)
             revalidate:10
         }
     )
-
-    console.log(data)
     return (
 <TutorsPage tutors={data.data}/>
     )

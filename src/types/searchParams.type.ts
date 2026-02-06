@@ -1,5 +1,7 @@
 export interface SearchParams {
     subject?:string,
     price?:string,
-    rating?:string
+    rating?:string,
+    category?: string
+    isFeatured?: boolean
 }

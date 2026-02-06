@@ -11,5 +11,6 @@ export interface Tutor {
     avg_rating: number,
     isFeatured: boolean,
     availability: boolean,
-    reviews: number
+    reviews?: number,
+    bookings?:number
 }

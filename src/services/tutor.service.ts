@@ -4,27 +4,55 @@ import { SearchParams, ServiceOption } from "@/types"
 const API_URL = env.API_URL
 
 export const tutorService = {
-    getTutors: async function (params?:SearchParams, options?:ServiceOption) {
+
+    // tutor search
+    getTutors: async function (params?: SearchParams, options?: ServiceOption) {
         try {
 
             const url = new URL(`${API_URL}/tutor`)
-            
-            if(params){
-                Object.entries(params).forEach(([key, value])=>{
-                    if(value !==undefined && value !==null && value!==''){
-                        url.searchParams.append(key,value)
+
+            if (params) {
+                Object.entries(params).forEach(([key, value]) => {
+                    if (value !== undefined && value !== null && value !== '') {
+                        url.searchParams.append(key, value)
                     }
                 })
             }
 
-            console.log(url.toString())
+            const config: RequestInit = {}
 
-            const res = await fetch(url.toString())
+            if (options?.cache) {
+                config.cache = options.cache
+            }
+
+            if (options?.revalidate) {
+                config.next = { revalidate: options.revalidate }
+            }
+
+
+
+
+            const res = await fetch(url.toString(), config)
             const data = await res.json()
 
             return { data: data, error: null }
         } catch (error) {
             return { data: null, error: { message: "Something went wrong" } }
         }
+    },
+
+    // featured turor
+    getFeaturedTutor: async function (options?: ServiceOption) {
+        try {
+            const res = await fetch(`${API_URL}/tutor/featured`, options)
+
+            const data = await res.json();
+
+            return { data: data, error: null }
+        } catch (error) {
+            return { data: null, error: { message: "Something went wrong" } }
+        }
     }
+
+
 }

@@ -9,6 +9,8 @@ import { Avatar } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { getSession } from "@/actions/user.actions";
 import { UserData } from "@/types";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 
 const NavItems = () => (
@@ -16,15 +18,16 @@ const NavItems = () => (
 
     <>
         <Link href="/" className="font- text-secondary hover:text-primary    transition-colors">Home</Link>
-        <Link href="#" className="font- text-secondary hover:text-primary transition-colors">About</Link>
+        <Link href="/tutors" className="font- text-secondary hover:text-primary transition-colors">Tutors</Link>
         <Link href="#" className="font- text-secondary hover:text-primary transition-colors">Contact</Link>
     </>
 );
 
 export default function Navbar() {
+    const router = useRouter()
     const [userData, setUserData] = useState<UserData | null>(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-   
+
 
     useEffect(() => {
         (
@@ -41,6 +44,17 @@ export default function Navbar() {
         )()
 
     }, [])
+
+
+    const handleSignOut = async () => {
+        try {
+            await authClient.signOut();
+            router.replace('/login')
+
+        } catch (err) {
+            console.error("Sign out error:", err);
+        }
+    };
 
 
     return (
@@ -82,12 +96,14 @@ export default function Navbar() {
                                     </Avatar>}
                                 {/* logout button */}
                                 <Button
+                                    onClick={handleSignOut}
                                     className="
                                         rounded-full 
                                         hover:bg-primary 
                                         hover:text-primary-foreground
                                         font-normal
                                         text-sm
+                                        cursor-pointer
                                         "
                                     variant="ghost">
                                     Logout
@@ -132,9 +148,6 @@ export default function Navbar() {
                                         />
                                     </Link>
                                 </SheetTitle>
-
-
-
                                 {isLoggedIn &&
                                     <div className="flex items-center gap-3">
 
@@ -152,42 +165,18 @@ export default function Navbar() {
 
                                     </div>
                                 }
-
-
-
                                 <div className="flex flex-col gap-4 mt-8 text-lg font-medium">
                                     <NavItems />
                                     <hr className="my-2" />
 
-
-                                    {/* {!isLoggedIn && (
-                                        <div className="flex flex-col gap-2">
-                                            <Link href="/login" className="w-full">
-                                                <Button
-                                                    size="lg"
-                                                    variant="outline"
-                                                    className="w-full
-                                                rounded-full hover:bg-primary hover:text-primary-foreground
-
-                                                ">Login</Button>
-                                            </Link>
-                                            <Link href="/register" className="w-full">
-                                                <Button
-                                                    size="lg"
-                                                    className="w-full
-                                                rounded-full bg-secondary hover:bg-primary
-
-                                                ">Register</Button>
-                                            </Link>
-                                        </div>
-                                    )} */}
-
                                     {
                                         isLoggedIn ? <>
                                             <Button
+                                            
+                                                onClick={handleSignOut}
                                                 size="lg"
                                                 variant="outline"
-                                                className="w-full
+                                                className="w-full cursor-pointer
                                                 rounded-full hover:bg-primary hover:text-primary-foreground
 
                                                 ">Logout</Button>

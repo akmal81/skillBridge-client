@@ -67,8 +67,8 @@ import { Tutor } from "@/types";
 export default function TutorSlider({tutors}:{tutors:Tutor[]}) {
     return (
         <section className="py-20 container mx-auto px-5">
-            <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold">Our Popular Tutors</h2>
+            <div className="text-left mb-12">
+                <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">Our Popular Tutors</h2>
                 <p className="text-muted-foreground mt-3 text-lg">
                     Learn from the best mentors in the country
                 </p>
