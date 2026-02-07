@@ -35,7 +35,7 @@ export default function HeroSearch() {
     return (
         <div className="mt-10 w-full max-w-2xl bg-white dark:bg-card p-2 pl-4 rounded-full shadow-lg border flex items-center justify-between gap-2">
 
-            {/* Left Side: Select + Input Group */}
+           
             <div className="flex items-center gap-2 flex-1">
                 {/* Subject Dropdown */}
                 <Select
@@ -51,8 +51,6 @@ export default function HeroSearch() {
                         <SelectItem className="hover:text-primary-foreground" value="rating">Rating</SelectItem>
                     </SelectContent>
                 </Select>
-
-                {/* Vertical Divider */}
                 <div className="h-6 w-[1px] bg-border hidden md:block" />
 
                 {/* Search Input Field */}

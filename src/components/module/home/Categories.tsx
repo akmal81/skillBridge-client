@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { categoryService } from "@/services/category.service";
 import { Category } from "@/types";
 
@@ -15,6 +16,7 @@ import {
   HistoryIcon,
   BookAIcon
 } from "lucide-react";
+import Link from "next/link";
 
 const CATEGORY_STYLE: Record<string, { icon: any, color: string, bg: string }> = {
   "Math": { icon: Calculator, color: "text-blue-600", bg: "bg-blue-50" },
@@ -45,11 +47,12 @@ const {data: categories} = await categoryService.getAllCagetories();
             {/* Grid Layout */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {categories?.data?.map((category: Category) => {
-                    // নাম অনুযায়ী স্টাইল খুঁজে বের করা
+                    
                     const style = CATEGORY_STYLE[category.catName] || CATEGORY_STYLE["default"];
                     const Icon = style.icon;
 
                     return (
+                        <Link key={category.id} href={`tutors/category/${category.id}`}>
                         <div
                             key={category.id}
                             className="group p-8 rounded-[2.5rem] border bg-card hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 transition-all cursor-pointer hover:-translate-y-3"
@@ -65,7 +68,9 @@ const {data: categories} = await categoryService.getAllCagetories();
                                 <span className="w-2 h-2 bg-primary rounded-full" />
                                 {category.tutors} Expert Tutors
                             </p>
+                           
                         </div>
+                        </Link>
                     );
                 })}
             </div>

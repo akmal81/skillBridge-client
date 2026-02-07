@@ -10,3 +10,6 @@ export const getSession = async()=>{
 export const getTutors = async()=>{
     return await tutorService.getTutors()
 }
+export const getTutorsBycategory = async()=>{
+    // return await tutorService.getTutorByCategory()
+}

@@ -8,13 +8,18 @@ export const categoryService = {
             const res = await fetch(`${API_URL}/categories`)
 
             const data = await res.json();
-            console.log(data)
+         
             return {data:data, error:null}
                 
         } catch (error) {
             return { data: null, error: { message: "Something went wrong" } }
         }
-    }
+    },
+
+    
+
+
+
     
 
 }

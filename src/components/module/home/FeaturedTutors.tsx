@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import { tutorService } from "@/services/tutor.service";
 import { Tutor } from "@/types";
 import Link from "next/link";
+import { env } from "@/env";
 
+const FRONTEND_URL = env.FRONTEND_URL
 
 export default async function FeaturedTutors() {
 
@@ -87,7 +89,11 @@ export default async function FeaturedTutors() {
                                             <span className="font-bold flex items-center gap-1 text-yellow-500"><Star size={14} fill="currentColor" /> {tutor.avg_rating}</span>
                                         </div>
                                     </div>
-                                    <Button className="rounded-full">Book a Class</Button>
+                                     <Link href={`${FRONTEND_URL}/tutors/${tutor.id}`}>
+                                    <Button className="
+                                    bg-secondary hover:bg-primary
+                                    rounded-full">Book a Class</Button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

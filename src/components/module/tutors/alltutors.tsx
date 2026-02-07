@@ -1,10 +1,18 @@
-import { Star, GraduationCap, Clock, CheckCircle2, ArrowRight } from "lucide-react";
+
+import { Star, GraduationCap, Clock, CheckCircle2, ArrowRight, Filter, FilterX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Tutor } from "@/types";
 import TutorCard from "./tutorCard";
 
-export default function TutorsPage({ tutors }: { tutors: Tutor[] }) {
+import { categoryService } from "@/services/category.service";
+import FilterOption from "./filterByCategory";
+import FilterByCategory from "./filterByCategory";
+
+export default async function TutorsPage({ tutors }: { tutors: Tutor[] }) {
+
+  const { data: categories } = await categoryService.getAllCagetories()
+
   return (
     <div className="min-h-screen bg-slate-50/50 dark:bg-background py-12 px-6">
       <div className="max-w-7xl mx-auto">
@@ -18,9 +26,17 @@ export default function TutorsPage({ tutors }: { tutors: Tutor[] }) {
               Explore professional tutors for your skill development.
             </p>
           </div>
-          <div className="bg-white dark:bg-card px-4 py-2 rounded-2xl border text-sm font-medium shadow-sm">
-             Showing {tutors?.length || 0} Results
+          <div className="flex items-center">
+            <FilterByCategory categories={categories.data || []} />
+
+            {/* <FilterOption category={data}/> */}
+
+
+
           </div>
+          {/* <div className="bg-white dark:bg-card px-4 py-2 rounded-2xl border text-sm font-medium shadow-sm">
+            Showing {tutors?.length || 0} Results
+          </div> */}
         </div>
 
         {/* গ্রিড ডিসপ্লে */}
@@ -33,7 +49,7 @@ export default function TutorsPage({ tutors }: { tutors: Tutor[] }) {
         ) : (
           <div className="text-center py-32 bg-white dark:bg-card rounded-[40px] border border-dashed border-primary/30">
             <div className="inline-flex items-center justify-center p-6 bg-primary/5 rounded-full mb-4">
-               <GraduationCap className="size-12 text-primary/40" />
+              <GraduationCap className="size-12 text-primary/40" />
             </div>
             <h2 className="text-2xl font-bold">No Tutors Found!</h2>
             <p className="text-muted-foreground max-w-sm mx-auto mt-2">

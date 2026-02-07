@@ -1,15 +1,21 @@
+
 import { Star, GraduationCap, Clock, CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { Tutor } from "@/types";
+import Link from "next/link";
+import { env } from "@/env";
 
-export default function TutorCard({ tutor }: { tutor: any }) {
+const FRONTEND_URL =env.FRONTEND_URL
+
+export default function TutorCard({ tutor }: { tutor: Tutor }) {
   return (
     <div className="group bg-white dark:bg-card border border-border/50 rounded-[2.5rem] p-4 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:border-primary/20">
       
       <div className="relative h-60 w-full overflow-hidden rounded-[2rem]">
         <Image
           src={tutor.image}
-          alt={tutor.name}
+          alt={tutor.name||""}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-110"
         />
@@ -63,10 +69,12 @@ export default function TutorCard({ tutor }: { tutor: any }) {
               <span className="text-sm font-normal text-muted-foreground">/mo</span>
             </p>
           </div>
-          <Button className="rounded-2xl h-12 w-12 group-hover:w-32 transition-all duration-300 bg-secondary hover:bg-primary text-primary-foreground flex items-center justify-center gap-2 group-hover:px-4 overflow-hidden">
+          <Link href={`${FRONTEND_URL}/tutors/${tutor.id}`}>
+          <Button className="rounded-full h-12 w-12 group-hover:w-32 transition-all duration-300 bg-secondary hover:bg-primary text-primary-foreground flex items-center justify-center gap-2 group-hover:px-4 overflow-hidden">
              <span className="hidden group-hover:block whitespace-nowrap font-bold">Details</span>
              <ArrowRight className="size-5 shrink-0" />
           </Button>
+          </Link>
         </div>
       </div>
     </div>

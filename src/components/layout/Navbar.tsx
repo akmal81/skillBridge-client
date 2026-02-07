@@ -14,12 +14,10 @@ import { useRouter } from "next/navigation";
 
 
 const NavItems = () => (
-
-
     <>
         <Link href="/" className="font- text-secondary hover:text-primary    transition-colors">Home</Link>
-        <Link href="/tutors" className="font- text-secondary hover:text-primary transition-colors">Tutors</Link>
-        <Link href="#" className="font- text-secondary hover:text-primary transition-colors">Contact</Link>
+        <Link href="/tutors/all-tutors" className="font- text-secondary hover:text-primary transition-colors">Tutors</Link>
+        <Link href="/dashboard" className="font- text-secondary hover:text-primary transition-colors">Dashboard</Link>
     </>
 );
 
@@ -45,7 +43,7 @@ export default function Navbar() {
 
     }, [])
 
-
+console.log(userData)
     const handleSignOut = async () => {
         try {
             await authClient.signOut();

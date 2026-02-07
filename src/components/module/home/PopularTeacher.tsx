@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/carousel";
 import { Star, CheckCircle } from "lucide-react";
 import { Tutor } from "@/types";
+import { Button } from "@/components/ui/button";
+import { env } from "@/env";
+import Link from "next/link";
 
 /* const tutors = [
 
@@ -63,6 +66,8 @@ import { Tutor } from "@/types";
         isVerified: true,
     },
 ]; */
+
+const FRONTEND_URL = env.FRONTEND_URL
 
 export default function TutorSlider({tutors}:{tutors:Tutor[]}) {
     return (
@@ -121,10 +126,15 @@ export default function TutorSlider({tutors}:{tutors:Tutor[]}) {
                                                         ({tutor.reviews} reviews)
                                                     </span>
                                                 </div>
-
-                                                <button className="mt-5 w-full py-2.5 rounded-full border border-secondary hover:border-none text-primary hover:bg-primary hover:text-white transition-colors font-semibold">
+                                        <Link href={`${FRONTEND_URL}/tutors/${tutor.id}`}>
+                                                <Button
+                                                size="lg"
+                                                 className="mt-5 w-full py-2.5 
+                                                s
+                                                rounded-full border hover:border-none text-white bg-secondary hover:bg-primary hover:text-white transition-colors font-semibold">
                                                     View Profile
-                                                </button>
+                                                </Button>
+                                                </Link>
                                             </div>
                                         </CardContent>
                                     </Card>

@@ -1,5 +1,5 @@
 import { env } from "@/env"
-import { SearchParams, ServiceOption } from "@/types"
+import { SearchParams, ServiceOption, TutorResponse } from "@/types"
 
 const API_URL = env.API_URL
 
@@ -40,7 +40,20 @@ export const tutorService = {
             return { data: null, error: { message: "Something went wrong" } }
         }
     },
+// tutor by id
+getTutorById: async function (params:string, options?: ServiceOption) {
+    try {
 
+        const res = await fetch(`${API_URL}/tutor/${params}`, options)
+        const data = await res.json();
+
+            return { data: data, error: null }
+        
+    } catch (error) {
+        return { data: null, error: { message: "Something went wrong" } }
+    }
+    
+},
     // featured turor
     getFeaturedTutor: async function (options?: ServiceOption) {
         try {
@@ -52,7 +65,47 @@ export const tutorService = {
         } catch (error) {
             return { data: null, error: { message: "Something went wrong" } }
         }
+    },
+// get tutor by category
+
+getTutorByCategory: async function (params:string, options?: ServiceOption) {
+    try {
+
+        const res = await fetch(`${API_URL}/tutor/bycategory/${params}`, options)
+        const data = await res.json();
+
+            return { data: data, error: null }
+        
+    } catch (error) {
+        return { data: null, error: { message: "Something went wrong" } }
     }
+    
+},
 
 
+getTutorsByCategory: async function (categoryId?: string): Promise<TutorResponse> {
+        try {
+        
+            const url = categoryId 
+                ? `${API_URL}/tutor/bycategory/${categoryId}` 
+                : `${API_URL}/tutor`;
+
+            const res = await fetch(url, {
+                next: { revalidate: 60 }
+            });
+
+            if (!res.ok) {
+                throw new Error("Failed to fetch tutors");
+            }
+
+            const result = await res.json();
+        
+            return { data: result, error: null };
+
+        } catch (error: any) {
+            console.error("Fetch Error:", error);
+            return { data: null, error: error.message || "Something went wrong" };
+        }
+    }
 }
+
