@@ -3,3 +3,8 @@ export interface Category{
     catName:string,
     tutors:number
 }
+
+export interface CreateCatgory{
+    catName:string,
+    description:string
+}
