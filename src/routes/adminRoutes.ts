@@ -11,18 +11,18 @@ export const adminRoutes = [
                 url: "#",
                 icon: User
             },
-            {
-                title: "Ban/Unban",
-                url: "#",
-                icon: Ban
-            },
+            // {
+            //     title: "Ban/Unban",
+            //     url: "#",
+            //     icon: Ban
+            // },
             {
                 title: "Bookings",
-                url: "#",
+                url: "/admin/bookings",
             },
             {
                 title: "Manage Categories",
-                url: "#",
+                url: "/admin/category",
                 icon:File
             },
         ],

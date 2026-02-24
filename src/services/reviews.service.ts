@@ -2,10 +2,10 @@ import { env } from "@/env"
 
 const API_URL = env.API_URL;
 
-export const categoryService = {
+export const reviewsService = {
     getAllCagetories : async function () {
         try {
-            const res = await fetch(`${API_URL}/categories`)
+            const res = await fetch(`${API_URL}/reviews`)
 
             const data = await res.json();
          
@@ -14,6 +14,12 @@ export const categoryService = {
         } catch (error) {
             return { data: null, error: { message: "Something went wrong" } }
         }
-    },  
+    },
+
+    
+
+
+
+    
 
 }

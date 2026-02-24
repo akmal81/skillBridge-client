@@ -14,7 +14,7 @@ export default function CategoryFilter({ categories }: { categories: Category[] 
 
   const handleFilter = (id: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    if (id === "") {
+    if (id === "all") {
       params.delete("catId");
     } else {
       params.set("catId", id);
