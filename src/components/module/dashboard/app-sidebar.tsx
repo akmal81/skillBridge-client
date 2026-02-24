@@ -79,7 +79,9 @@ export function AppSidebar({ user, ...props }: { user: { role: string } & React.
                           {/* <span className="text-sm font-medium">{item.icon}</span> */}
                           <span className="text-sm font-medium">{item.title}</span>
                         </Link>
+                        
                       </SidebarMenuButton>
+                      
                     </SidebarMenuItem>
                   );
                 })}

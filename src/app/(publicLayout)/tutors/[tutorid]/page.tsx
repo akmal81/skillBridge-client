@@ -17,7 +17,7 @@ export default async function TutorById(
 
     return (
         <div className="min-h-screen bg-slate-50/50 dark:bg-background pb-20">
-            {/* হেডার/ব্যানার সেকশন */}
+           
             <div className="h-64 bg-secondary/30 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent" />
             </div>
@@ -25,7 +25,7 @@ export default async function TutorById(
             <div className="container mx-auto px-6 -mt-32 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-                    {/* বাম পাশে: টিউটর প্রোফাইল ডিটেইলস */}
+                  
                     <div className="lg:col-span-2 space-y-8">
                         <div className="bg-white dark:bg-card border rounded-[3rem] p-8 md:p-12 shadow-sm">
                             <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -90,7 +90,7 @@ export default async function TutorById(
                         </div>
                     </div>
 
-                    {/* ডান পাশে: বুকিং কার্ড (Sticky) */}
+                   
                     <div className="lg:col-span-1">
                         <div className="sticky top-24 bg-white dark:bg-card border rounded-[3rem] p-8 shadow-xl shadow-primary/5">
                             <div className="mb-8">

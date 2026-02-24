@@ -8,7 +8,7 @@ export const adminRoutes = [
         items: [
             {
                 title: "All Users",
-                url: "#",
+                url: "/admin",
                 icon: User
             },
             // {

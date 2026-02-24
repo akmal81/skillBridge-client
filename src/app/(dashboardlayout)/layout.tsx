@@ -1,3 +1,4 @@
+import DashboardNavbar from "@/components/layout/dashboardNavbar"
 import { AppSidebar } from "@/components/module/dashboard/app-sidebar"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -20,6 +21,7 @@ export default async function DashboardLayout(
 ) {
   const { data } = await userService.getSession();
 
+  console.log(data)
   if (!data.user) {
     redirect('/login')
   }
@@ -29,34 +31,38 @@ export default async function DashboardLayout(
 
   let dashboardBody: React.ReactNode = null;
 
-//  role base parallal route 
+  //  role base parallal route 
   if (userRole.role === Roles.ADMIN) {
     dashboardBody = admin;
   } else if (userRole.role === Roles.TUTOR) {
     dashboardBody = tutor
   } else if (userRole.role === Roles.STUDENT) {
-    dashboardBody === student
+    dashboardBody = student
   } else {
     redirect('/login')
   }
 
-return(
-  <SidebarProvider>
-    <AppSidebar user={userRole} />
-    <SidebarInset>
-      <header className="flex h-16 shrink-0 bg-primary-foreground items-center gap-2 border-b px-4">
-        <SidebarTrigger className="-ml-1" />
-        <Separator
-          orientation="vertical"
-          className="mr-2 data-[orientation=vertical]:h-4"
-        />
-      </header>
-      <main className="bg-primary-foreground min-h-screen">
-        {
-          dashboardBody
-        }
-      </main>
-    </SidebarInset>
-  </SidebarProvider>
+  return (
+    <SidebarProvider>
+      <AppSidebar user={userRole} />
+      <SidebarInset>
+        <header className="flex h-16 w-full bg-primary-foreground items-center justify-between gap-2 border-b px-4">
+          <SidebarTrigger className="-ml-1" />
+         
+          <div className="flex-1 flex justify-end">
+            <DashboardNavbar />
+          </div>
+          <Separator
+            orientation="vertical"
+            className="mr-2 data-[orientation=vertical]:h-4"
+          />
+        </header>
+        <main className="bg-primary-foreground min-h-screen">
+          {
+            dashboardBody
+          }
+        </main>
+      </SidebarInset>
+    </SidebarProvider>
   )
 }

@@ -57,6 +57,39 @@ export const categoryService = {
                 error: { message: "Something Went Wrong Connection to Server" }
             };
         }
+    },
+   deleteCategory: async (categoryId: string) => {
+    try {
+        const cookieStore = await cookies();
+
+        const res = await fetch(`${API_URL}/admin/categories/${categoryId}`, {
+            method: "DELETE",
+            headers: {
+            
+                Cookie: cookieStore.toString()
+            },
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            return {
+                data: null,
+                error: { message: data.message || "Failed to delete category" }
+            };
+        }
+
+        return {
+            data: data,
+            error: null
+        };
+    } catch (error: any) {
+        console.error("Delete Category Error:", error);
+        return { 
+            data: null, 
+            error: { message: "Server connection failed" } 
+        };
     }
+}
 
 }

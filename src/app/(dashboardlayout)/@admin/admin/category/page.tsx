@@ -4,6 +4,7 @@ import { Trash2, FolderTree, Plus } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import AddCategoryModal from "@/components/module/dashboard/categoryModul";
+import { revalidatePath } from "next/cache";
 
 interface CategoryData {
     id: string;
@@ -19,19 +20,24 @@ export default async function AdminCategoryPage() {
 
     const handleDelete = async (id: string) => {
         "use server";
-        // 
-        console.log("Deleting category:", id);
-    };
 
+        const res = await categoryService.deleteCategory(id);
+
+        if (res.error) {
+            console.error(res.error.message);
+
+        } else {
+
+            revalidatePath("/admin/categories");
+        }
+    };
     return (
         <div className="p-6 lg:p-10 space-y-6">
             {/* Header */}
             <div className="flex justify-between items-end">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight text-gray-900">Categories</h1>
-                    <p className="text-muted-foreground font-medium">
-                        SkillBridge-এর সকল শিক্ষার বিষয় বা ক্যাটাগরি এখান থেকে নিয়ন্ত্রণ করুন।
-                    </p>
+
                 </div>
                 {/* <Button className="rounded-xl bg-blue-600 hover:bg-blue-700 flex gap-2">
                     <Plus className="h-4 w-4" /> Add Category
@@ -88,7 +94,7 @@ export default async function AdminCategoryPage() {
 
             {categories.length === 0 && (
                 <div className="text-center py-20 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
-                    <p className="text-gray-500 font-medium">কোনো ক্যাটাগরি খুঁজে পাওয়া যায়নি।</p>
+                    <p className="text-gray-500 font-medium"></p>
                 </div>
             )}
         </div>
