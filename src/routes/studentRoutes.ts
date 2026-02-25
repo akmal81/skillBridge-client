@@ -7,14 +7,15 @@ export const StudentRoutes = [
         items: [
             {
                 title: "Profile",
-                url: "#",
+                url: "/dashboard",
                 icon:User
             },
             {
                 title: "Bookings",
-                url: "#",
+                url: "/dashboard/my-bookings",
                 icon:CalendarCheck
             },
+          
           
         ],
     },

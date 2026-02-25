@@ -55,6 +55,7 @@ export default function EditProfileModal({ student }: EditProfileProps) {
             toast.error(result.message);
         }
     } catch (error) {
+      console.log(error)
         toast.error("An unexpected error occurred");
     }
     },

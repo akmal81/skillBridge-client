@@ -3,8 +3,9 @@
 
 import TutorCard from "@/components/module/tutors/tutorCard";
 import { Button } from "@/components/ui/button";
+import { reviewsService } from "@/services/reviews.service";
 import { tutorService } from "@/services/tutor.service";
-import { Calendar, CheckCircle2, Clock, GraduationCap, MapPin, MessageCircle, ShieldCheck, Star } from "lucide-react";
+import { Calendar, CheckCircle2, Clock, GraduationCap, MapPin, MessageCircle, ShieldCheck, Star, User } from "lucide-react";
 import Image from "next/image";
 
 export default async function TutorById(
@@ -14,10 +15,12 @@ export default async function TutorById(
 
     const { data: tutor } = await tutorService.getTutorById(tutorid, { revalidate: 10 })
 
+    const { data: reviews } = await reviewsService.getReviewsByTutorId(tutorid)
+    console.log(reviews)
 
     return (
         <div className="min-h-screen bg-slate-50/50 dark:bg-background pb-20">
-           
+
             <div className="h-64 bg-secondary/30 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent" />
             </div>
@@ -25,7 +28,7 @@ export default async function TutorById(
             <div className="container mx-auto px-6 -mt-32 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-                  
+
                     <div className="lg:col-span-2 space-y-8">
                         <div className="bg-white dark:bg-card border rounded-[3rem] p-8 md:p-12 shadow-sm">
                             <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -90,7 +93,7 @@ export default async function TutorById(
                         </div>
                     </div>
 
-                   
+
                     <div className="lg:col-span-1">
                         <div className="sticky top-24 bg-white dark:bg-card border rounded-[3rem] p-8 shadow-xl shadow-primary/5">
                             <div className="mb-8">
@@ -128,6 +131,69 @@ export default async function TutorById(
                     </div>
 
                 </div>
+                <div className="mt-12">
+  <div className="flex items-center justify-between mb-8">
+    <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+      Student Feedbacks 
+      <span className="text-sm font-normal text-gray-500 bg-gray-100 px-2 py-0.5 rounded-lg">
+        {reviews.length}
+      </span>
+    </h3>
+  </div>
+
+  {reviews.length > 0 ? (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {reviews.map((review: any) => (
+      
+
+<div 
+    key={review.id} 
+    className="mb-6 p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300"
+  >
+    <div className="flex items-start justify-between mb-4">
+      <div className="flex items-center gap-3">
+       
+        <div className="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+          <User size={20} />
+        </div>
+        <div>
+         
+          <h4 className="font-bold text-gray-800">
+            {review.student?.user?.name || "Verified Student"}
+          </h4>
+          <div className="flex items-center gap-1 mt-0.5">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                size={14}
+                className={i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-200"}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+      
+     
+      <span className="text-sm font-semibold text-gray-400 bg-gray-50 px-3 py-1 rounded-full">
+        {review.rating}.0
+      </span>
+    </div>
+
+    
+    <p className="text-gray-600 leading-relaxed italic">
+      "{review.review}"
+    </p>
+  </div>
+
+        
+      ))}
+    </div>
+  ) : (
+    <div className="text-center py-10 bg-gray-50 rounded-3xl border border-dashed border-gray-200">
+      <p className="text-gray-400">No reviews yet. Be the first to review!</p>
+    </div>
+  )}
+</div>
             </div>
         </div>
     );
