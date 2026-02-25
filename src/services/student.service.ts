@@ -33,5 +33,34 @@ export const studentService = {
         }
 
 
+    },
+
+
+    updateStudentProfile: async (studentId: string, updateData: { name: string; image?: string }) => {
+        try {
+            const cookieStore = await cookies();
+
+            const res = await fetch(`${API_URL}/students/${studentId}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Cookie": cookieStore.toString()
+                },
+                body: JSON.stringify(updateData),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                return {
+                    data: null,
+                    error: { message: data.message || "Failed to update profile" }
+                };
+            }
+
+            return { data, error: null };
+        } catch (error) {
+            return { data: null, error: { message: "Server connection failed" } };
+        }
     }
 }

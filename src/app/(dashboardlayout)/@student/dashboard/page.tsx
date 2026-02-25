@@ -1,3 +1,4 @@
+import EditProfileModal from "@/components/module/dashboard/updateProfile";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -88,7 +89,8 @@ export default async function StudentDashboardPage() {
             {/* Account ID Footer */}
             <div className="bg-gray-50 p-4 rounded-xl border-2 border-dashed border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
                 <span className="text-xs font-mono text-gray-400">UID: {student.id}</span>
-                <button className="text-sm font-bold text-blue-600 hover:underline">Edit Profile Settings</button>
+                <EditProfileModal student={{id: student.id, name: student.name, image: student.image }} />
+                {/* <button className="text-sm font-bold text-blue-600 hover:underline">Edit Profile Settings</button> */}
             </div>
         </div>
     );
