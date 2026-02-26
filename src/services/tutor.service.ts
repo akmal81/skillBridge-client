@@ -54,6 +54,54 @@ getTutorById: async function (params:string, options?: ServiceOption) {
     }
     
 },
+
+
+
+
+getTutorByUserId: async function (userId: string, options?: any) {
+
+
+    try {
+
+      
+        const res = await fetch(`${API_URL}/tutor/user/${userId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            ...options 
+        });
+
+       
+        if (!res.ok) {
+            const errorData = await res.json();
+            return { 
+                data: null, 
+                error: { message: errorData.message || "Tutor not found" } 
+            };
+        }
+
+         const data = await res.json();
+         console.log(data)
+
+            return { data: data, error: null }
+        
+    } catch (error: any) {
+        console.error("Fetch Error:", error);
+        return { 
+            data: null, 
+            error: { message: error.message || "Something went wrong" } 
+        };
+    }
+},
+
+
+
+
+
+
+
+
     // featured turor
     getFeaturedTutor: async function (options?: ServiceOption) {
         try {
@@ -106,6 +154,32 @@ getTutorsByCategory: async function (categoryId?: string): Promise<TutorResponse
             console.error("Fetch Error:", error);
             return { data: null, error: error.message || "Something went wrong" };
         }
+    },
+
+
+  createTutor: async (payload: any, cookieString: string) => {
+    try {
+      const res = await fetch(`${API_URL}/tutor`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Cookie": cookieString, 
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.message || "Failed to create tutor profile");
+      }
+
+      return { data: result, error: null };
+    } catch (error: any) {
+      return { data: null, error: error.message };
     }
+  },
+
+
 }
 

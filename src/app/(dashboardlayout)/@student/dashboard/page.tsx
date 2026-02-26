@@ -11,7 +11,7 @@ export default async function StudentDashboardPage() {
 
     const { data } = await userService.getSession();
     const studentId = data.user.id
-    console.log(data.user)
+
 
     const { data: student } = await studentService.getStudentById(studentId)
     console.log(student)

@@ -8,3 +8,9 @@ export interface CreateCatgory{
     catName:string,
     description:string
 }
+
+export interface CreateTurorCategory{
+    id:string,
+    catName:string,
+    description:string
+}

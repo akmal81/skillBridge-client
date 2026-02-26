@@ -43,7 +43,7 @@ export default function Navbar() {
 
     }, [])
 
-console.log(userData)
+// console.log(userData)
     const handleSignOut = async () => {
         try {
             await authClient.signOut();

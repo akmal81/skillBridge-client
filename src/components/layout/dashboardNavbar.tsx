@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
+import { Menu, MenuIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
@@ -25,7 +25,12 @@ export default function DashboardNavbar() {
     const router = useRouter()
     const [userData, setUserData] = useState<UserData | null>(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+const [mounted, setMounted] = useState(false);
 
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
     useEffect(() => {
         (
@@ -56,7 +61,7 @@ export default function DashboardNavbar() {
 
 
     return (
-        <nav className="border-b bg-background">
+        <nav className="border-b ">
             <div className="container mx-auto flex h-16 items-center justify-between  px-4">
 
             
@@ -112,7 +117,10 @@ export default function DashboardNavbar() {
 
 
                     <div className="md:hidden">
-                        <Sheet>
+                       {mounted ? (
+
+
+ <Sheet>
                             <SheetTrigger asChild>
                                 <Button
                                     className="hover:bg-primary-foreground"
@@ -192,6 +200,17 @@ export default function DashboardNavbar() {
                                 </div>
                             </SheetContent>
                         </Sheet>
+
+
+
+
+                        ):(
+         
+            <Button variant="ghost" size="icon" disabled>
+              <MenuIcon />
+            </Button>
+          )
+                       }
                     </div>
 
                 </div>

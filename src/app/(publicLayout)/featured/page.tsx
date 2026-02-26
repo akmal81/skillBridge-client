@@ -18,7 +18,7 @@ export default async function FeaturedTutors(
         }
     )
 
-    console.log(data)
+
    return (
     <section className="py-20 bg-slate-50/30 dark:bg-transparent">
       <div className="container mx-auto px-6">

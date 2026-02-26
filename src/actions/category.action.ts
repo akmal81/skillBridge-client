@@ -12,7 +12,13 @@ export const createCategory = async (values: {catName: string, description: stri
         return { success: false, message: result.error.message };
     }
 
-    // ডাটা আপডেট করার পর ক্যাটাগরি পেজটি রিফ্রেশ করবে
+   
     updateTag("category")
     return { success: true };
+}
+
+
+
+export const getCategories = async()=>{
+    return await categoryService.getAllCagetories()
 }
