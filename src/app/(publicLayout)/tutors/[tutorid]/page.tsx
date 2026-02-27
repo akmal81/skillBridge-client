@@ -1,6 +1,7 @@
 
 
 
+import TutorTimeSlotSelection from "@/components/module/tutors/timeSlots";
 import TutorCard from "@/components/module/tutors/tutorCard";
 import { Button } from "@/components/ui/button";
 import { reviewsService } from "@/services/reviews.service";
@@ -16,7 +17,31 @@ export default async function TutorById(
     const { data: tutor } = await tutorService.getTutorById(tutorid, { revalidate: 10 })
 
     const { data: reviews } = await reviewsService.getReviewsByTutorId(tutorid)
-    console.log(reviews)
+
+    
+  
+
+
+    // const [tutorId, setTutorId] = useState<string | null>(null);
+    //         const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
+    //         useEffect(() => {
+    //         const fetchTutor = async () => {
+    //             try {
+    //                 const session = await getSession();
+    //                 if (session?.data?.user?.id) {
+    //                     const tutor = await getTutorByUserId(session.data.user.id);
+    //                     if (tutor?.success && tutor?.data) {
+    //                         setTutorId(tutor.data.id);
+    //                     }
+    //                 }
+    //             } catch (error) {
+    //                 console.error("Failed to fetch tutor info", error);
+    //             }
+    //         };
+    //         fetchTutor();
+    //     }, []);
 
     return (
         <div className="min-h-screen bg-slate-50/50 dark:bg-background pb-20">
@@ -115,85 +140,91 @@ export default async function TutorById(
                                 </div>
                             </div>
 
+
                             <div className="space-y-3">
-                                <Button className="w-full h-14 rounded-full text-lg font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
+
+                                <TutorTimeSlotSelection
+                                    timeSlots={tutor.timeSlots} tutorId={tutor.id}
+                                    // onSelect={(id) => setSelectedSlot(id)}
+                                />
+
+
+                                {/* <Button className="w-full h-14 rounded-full text-lg font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
                                     Book a Session
                                 </Button>
                                 <Button variant="outline" className="w-full h-14 text-lg rounded-full font-bold border-2 gap-2">
                                     <MessageCircle className="size-5" /> Leave a Message
-                                </Button>
+                                </Button> */}
                             </div>
 
-                            <p className="text-[10px] text-center text-muted-foreground mt-6 uppercase tracking-tighter">
-                                Secure payment & 100% satisfaction guarantee
-                            </p>
+                          
                         </div>
                     </div>
 
                 </div>
                 <div className="mt-12">
-  <div className="flex items-center justify-between mb-8">
-    <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-      Student Feedbacks 
-      <span className="text-sm font-normal text-gray-500 bg-gray-100 px-2 py-0.5 rounded-lg">
-        {reviews.length}
-      </span>
-    </h3>
-  </div>
+                    <div className="flex items-center justify-between mb-8">
+                        <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                            Student Feedbacks
+                            <span className="text-sm font-normal text-gray-500 bg-gray-100 px-2 py-0.5 rounded-lg">
+                                {reviews.length}
+                            </span>
+                        </h3>
+                    </div>
 
-  {reviews.length > 0 ? (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {reviews.map((review: any) => (
-      
+                    {reviews.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {reviews.map((review: any) => (
 
-<div 
-    key={review.id} 
-    className="mb-6 p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300"
-  >
-    <div className="flex items-start justify-between mb-4">
-      <div className="flex items-center gap-3">
-       
-        <div className="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
-          <User size={20} />
-        </div>
-        <div>
-         
-          <h4 className="font-bold text-gray-800">
-            {review.student?.user?.name || "Verified Student"}
-          </h4>
-          <div className="flex items-center gap-1 mt-0.5">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                size={14}
-                className={i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-200"}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-      
-     
-      <span className="text-sm font-semibold text-gray-400 bg-gray-50 px-3 py-1 rounded-full">
-        {review.rating}.0
-      </span>
-    </div>
 
-    
-    <p className="text-gray-600 leading-relaxed italic">
-      "{review.review}"
-    </p>
-  </div>
+                                <div
+                                    key={review.id}
+                                    className="mb-6 p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300"
+                                >
+                                    <div className="flex items-start justify-between mb-4">
+                                        <div className="flex items-center gap-3">
 
-        
-      ))}
-    </div>
-  ) : (
-    <div className="text-center py-10 bg-gray-50 rounded-3xl border border-dashed border-gray-200">
-      <p className="text-gray-400">No reviews yet. Be the first to review!</p>
-    </div>
-  )}
-</div>
+                                            <div className="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                                                <User size={20} />
+                                            </div>
+                                            <div>
+
+                                                <h4 className="font-bold text-gray-800">
+                                                    {review.student?.user?.name || "Verified Student"}
+                                                </h4>
+                                                <div className="flex items-center gap-1 mt-0.5">
+                                                    {[...Array(5)].map((_, i) => (
+                                                        <Star
+                                                            key={i}
+                                                            size={14}
+                                                            className={i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-200"}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <span className="text-sm font-semibold text-gray-400 bg-gray-50 px-3 py-1 rounded-full">
+                                            {review.rating}.0
+                                        </span>
+                                    </div>
+
+
+                                    <p className="text-gray-600 leading-relaxed italic">
+                                        "{review.review}"
+                                    </p>
+                                </div>
+
+
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center py-10 bg-gray-50 rounded-3xl border border-dashed border-gray-200">
+                            <p className="text-gray-400">No reviews yet. Be the first to review!</p>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

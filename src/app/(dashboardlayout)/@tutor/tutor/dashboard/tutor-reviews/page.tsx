@@ -15,7 +15,7 @@ export default async function TutorReviewsPage() {
     const {data: reviews} = await reviewsService.getReviewsByTutorId(tutor.id);
 
    
-console.log(reviews)
+
 
     return(
         <div>

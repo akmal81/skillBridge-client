@@ -21,7 +21,7 @@ export default async function DashboardLayout(
 ) {
   const { data } = await userService.getSession();
 
-  console.log(data)
+  // console.log(data)
   if (!data.user) {
     redirect('/login')
   }

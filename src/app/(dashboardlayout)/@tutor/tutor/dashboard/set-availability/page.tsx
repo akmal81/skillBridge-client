@@ -1,3 +1,4 @@
+import TimeSlotPage from "@/components/module/dashboard/timeSlot";
 import TutorReviewsTable from "@/components/module/dashboard/tutorReviews";
 import TutorSessionsTable from "@/components/module/dashboard/tutorSession";
 
@@ -12,14 +13,12 @@ export default async function SetAvailAbilityPage() {
 
     const {data:tutor} = await tutorService.getTutorByUserId(user.user.id);
 
-    const {data: reviews} = await reviewsService.getReviewsByTutorId(tutor.id);
+    const {data:timeSlots} = await tutorService.getTimeSlotsByTutorId(tutor.id);
 
-   
-console.log(reviews)
 
     return(
         <div>
-        <TutorReviewsTable reviews={reviews}/>
+      <TimeSlotPage timeSlots={timeSlots} />
         </div>
     )
 }

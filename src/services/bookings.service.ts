@@ -1,5 +1,5 @@
 import { env } from "@/env";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 
 
 const API_URL = env.API_URL
@@ -105,27 +105,46 @@ export const bookingService = {
 
 
     updateBookingStatus: async (bookingId: string, status: string, cookieString: string) => {
-    try {
-        console.log(status)
-      const res = await fetch(`${API_URL}/bookings/complete/${bookingId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "Cookie": cookieString,
-        },
-        body: JSON.stringify({status}),
-      });
+        try {
+            console.log(status)
+            const res = await fetch(`${API_URL}/bookings/complete/${bookingId}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Cookie": cookieString,
+                },
+                body: JSON.stringify({ status }),
+            });
 
-      const result = await res.json();
-      if (!res.ok) throw new Error(result.message || "Failed to update status");
-      
-      return { data: result, error: null };
-    } catch (error: any) {
-      return { data: null, error: error.message };
+            const result = await res.json();
+            if (!res.ok) throw new Error(result.message || "Failed to update status");
+
+            return { data: result, error: null };
+        } catch (error: any) {
+            return { data: null, error: error.message };
+        }
+    },
+
+    createBooking: async function (bookingData: any) {
+
+        try {
+            const cookieStor = await cookies();
+
+            const res = await fetch(`${API_URL}/bookings`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Cookie": cookieStor.toString()
+                },
+                body: JSON.stringify(bookingData),
+            });
+
+            const result = await res.json();
+            if (!res.ok) throw new Error(result.message || "Failed to create booking");
+
+            return { data: result, error: null };
+        } catch (error: any) {
+            return { data: null, error: error.message };
+        }
     }
-  },
-
-createBooking : async function (bookingData : any) {}
-
-
 }

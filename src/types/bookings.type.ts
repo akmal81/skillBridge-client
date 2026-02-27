@@ -44,3 +44,9 @@ export interface MyBooking {
     endTime: string;
   };
 }
+
+export interface CreateBooking{
+  studentId: string | undefined,
+  tutorId: string,
+  timeSlotId: string
+}

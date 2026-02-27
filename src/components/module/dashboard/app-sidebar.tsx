@@ -50,7 +50,14 @@ export function AppSidebar({ user, ...props }: { user: { role: string } & React.
     <Sidebar {...props} className="border-r-0 shadow-xl">
       <SidebarHeader className="h-16 flex items-center px-6 border-b">
         <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-          Skillbridge
+        <Link href="/" className="flex items-center">
+                        <h1 className="text-primary font-bold text-4xl">
+                            Skill
+                            <span className="text-secondary">
+                                bridge
+                            </span>
+                            <span className="">.</span></h1>
+                    </Link>
         </h1>
       </SidebarHeader>
 

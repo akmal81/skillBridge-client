@@ -1,36 +1,36 @@
-"use client"; 
+"use client";
 
 import { Badge } from "@/components/ui/badge";
-import { 
-  CalendarDays, 
-  Clock, 
-  CheckCircle2, 
-  Timer, 
-  XCircle, 
-  BookOpen,
-  ExternalLink
+import {
+    CalendarDays,
+    Clock,
+    CheckCircle2,
+    Timer,
+    XCircle,
+    BookOpen,
+    ExternalLink
 } from "lucide-react";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
 } from "@/components/ui/table";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
-import { MyBooking } from "@/types"; 
+import { MyBooking } from "@/types";
 import { cancelBookingAction } from "@/actions/booking.action";
 import { Button } from "@/components/ui/button";
 import { ReviewModal } from "./reviewModal";
@@ -63,7 +63,7 @@ export function BookingTable({ data, isHistory = false }: { data: MyBooking[], i
     if (data.length === 0) {
         return (
             <div className="p-12 text-center text-gray-400 font-medium italic bg-gray-50/50">
-               
+
             </div>
         );
     }
@@ -93,10 +93,10 @@ export function BookingTable({ data, isHistory = false }: { data: MyBooking[], i
                     <TableRow key={booking.id} className="hover:bg-gray-50/50 transition-colors">
                         <TableCell>
                             <div className="flex items-center gap-3">
-                                <img 
-                                    src={booking.tutor.image} 
-                                    alt="Tutor" 
-                                    className={`h-10 w-10 rounded-xl object-cover ${isHistory ? 'grayscale-[0.5]' : 'ring-2 ring-blue-50'}`} 
+                                <img
+                                    src={booking.tutor.image}
+                                    alt="Tutor"
+                                    className={`h-10 w-10 rounded-xl object-cover ${isHistory ? 'grayscale-[0.5]' : 'ring-2 ring-blue-50'}`}
                                 />
                                 <div>
                                     <p className="font-bold text-gray-900 leading-none">{booking.tutor.user.name}</p>
@@ -127,12 +127,12 @@ export function BookingTable({ data, isHistory = false }: { data: MyBooking[], i
                         </TableCell>
                         <TableCell className="text-right">
                             <div className="flex justify-end items-center gap-2">
-                                {!isHistory && booking.status === "PENDING" && (
+                                {!isHistory && booking.status === "PENDING" ?(
                                     <AlertDialog>
                                         <AlertDialogTrigger asChild>
-                                            <button className="p-2 hover:bg-red-50 rounded-full transition-colors group">
-                                                <XCircle className="h-5 w-5 text-gray-400 group-hover:text-red-500" />
-                                            </button>
+                                            <Button variant="outline" className="p-2 hover:bg-red-100 rounded-full transition-colors group">
+                                               Cancel Booking <XCircle className="h-5 w-5 text-gray-400 group-hover:text-red-500" />
+                                            </Button>
                                         </AlertDialogTrigger>
                                         <AlertDialogContent className="rounded-2xl">
                                             <AlertDialogHeader>
@@ -143,7 +143,7 @@ export function BookingTable({ data, isHistory = false }: { data: MyBooking[], i
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
                                                 <AlertDialogCancel className="rounded-xl">Close</AlertDialogCancel>
-                                                <AlertDialogAction 
+                                                <AlertDialogAction
                                                     onClick={() => handleCancel(booking.id)}
                                                     className="bg-red-600 hover:bg-red-700 rounded-xl"
                                                 >
@@ -152,19 +152,24 @@ export function BookingTable({ data, isHistory = false }: { data: MyBooking[], i
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
                                     </AlertDialog>
-                                )}
+                                ):
+                             <Button variant="outline" disabled  className="p-2 hover:bg-red-100 rounded-full transition-colors group ">
+                                               Cancel Booking <XCircle className="h-5 w-5 text-gray-400 group-hover:text-red-500" />
+                                            </Button>
+                            
+                            }
 
 
                                 {
-                                    booking.status === "PENDING" || booking.status ==="CONFIRMED" ?
-                                    null
-                                    : 
+                                    booking.status === "PENDING" || booking.status === "CONFIRMED" ?
+                                        null
+                                        :
 
-                                  <ReviewModal 
-        tutorId={booking.tutor.id}      // Booking table direct field
-        studentId={booking.studentId}  // Booking table direct field
-        tutorName={booking.tutor.user.name} 
-    />
+                                        <ReviewModal
+                                            tutorId={booking.tutor.id}      // Booking table direct field
+                                            studentId={booking.studentId}  // Booking table direct field
+                                            tutorName={booking.tutor.user.name}
+                                        />
                                 }
 
                             </div>

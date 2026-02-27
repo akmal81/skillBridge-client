@@ -1,6 +1,7 @@
 "use server";
 
 import { bookingService } from "@/services/bookings.service";
+import { CreateBooking } from "@/types/bookings.type";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
@@ -35,4 +36,9 @@ export async function updateSessionStatusAction(bookingId: string, status: strin
   } catch (error: any) {
     return { success: false, error: error.message };
   }
+}
+
+
+export async function createBooking(bookingData:CreateBooking){
+  return await bookingService.createBooking(bookingData);
 }

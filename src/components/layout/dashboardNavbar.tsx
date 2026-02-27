@@ -63,14 +63,11 @@ const [mounted, setMounted] = useState(false);
     return (
         <nav className="border-b ">
             <div className="container mx-auto flex h-16 items-center justify-between  px-4">
-
-            
-
                 <div className="flex items-end gap-4">
                     <div className="hidden sm:flex items-center gap-4">
                         {isLoggedIn ? (
                             <div className="flex items-center gap-3">
-
+                                {/* <Link href="/" className="font- text-secondary hover:text-primary transition-colors">Home</Link> */}
                                 <span className="hidden text-sm font-medium lg:inline-block">{userData?.name}</span>
                                 {userData &&
                                     <Avatar>
