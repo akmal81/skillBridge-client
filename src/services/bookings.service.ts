@@ -49,6 +49,29 @@ export const bookingService = {
             return { data: null, error: { message: "Something went wrong" } };
         }
     },
+    getBookingBytutorId: async function (tutorId: string) {
+
+        try {
+            const url = new URL(`${API_URL}/bookings/tutor/${tutorId}`);
+
+            const res = await fetch(url.toString(), {
+                method: "GET",
+                headers: Object.fromEntries(await headers()),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                return { data: null, error: { message: data.message || "Unauthorized" } };
+            }
+
+            return { data: data, error: null };
+        } catch (error) {
+            return { data: null, error: { message: "Something went wrong" } };
+        }
+    },
+
+
 
 
     updateBookingToCancel: async function (bookingId: string) {
@@ -78,6 +101,29 @@ export const bookingService = {
             };
         }
     },
+
+
+
+    updateBookingStatus: async (bookingId: string, status: string, cookieString: string) => {
+    try {
+        console.log(status)
+      const res = await fetch(`${API_URL}/bookings/complete/${bookingId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Cookie": cookieString,
+        },
+        body: JSON.stringify({status}),
+      });
+
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.message || "Failed to update status");
+      
+      return { data: result, error: null };
+    } catch (error: any) {
+      return { data: null, error: error.message };
+    }
+  },
 
 createBooking : async function (bookingData : any) {}
 

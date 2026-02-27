@@ -35,3 +35,19 @@ export async function createTutorAction(payload: {
     return { success: false, error: error.message || "An unexpected error occurred" };
   }
 }
+
+
+export async function updateTutorAction(tutorId: string, payload: any) {
+  try {
+    const cookieStore = await cookies();
+    const res = await tutorService.updateTutor(tutorId, payload, cookieStore.toString());
+
+    if (res.error) return { success: false, error: res.error };
+
+   
+    revalidatePath("/tutor/dashboard");
+    return { success: true };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+}

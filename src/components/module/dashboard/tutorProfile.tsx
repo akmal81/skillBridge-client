@@ -3,6 +3,7 @@ import {
   Star, DollarSign, Calendar, Edit3 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { UpdateTutorModal } from "./updateTutorProfileModal";
 
 export default function TutorProfileDashboard({ tutor, user }: { tutor: any, user: any }) {
   return (
@@ -28,9 +29,10 @@ export default function TutorProfileDashboard({ tutor, user }: { tutor: any, use
             </div>
           </div>
         </div>
-        <Button size="lg" className="rounded-full bg-primary hover:bg-secondary  text-white px-8 h-12 flex gap-2">
+        {/* <Button size="lg" className="rounded-full bg-primary hover:bg-secondary  text-white px-8 h-12 flex gap-2">
           <Edit3 size={18} /> Edit Profile
-        </Button>
+        </Button> */}
+        <UpdateTutorModal tutor={tutor} />
       </div>
 
       {/* Stats Grid */}

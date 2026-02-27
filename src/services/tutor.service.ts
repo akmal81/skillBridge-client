@@ -82,7 +82,7 @@ getTutorByUserId: async function (userId: string, options?: any) {
         }
 
          const data = await res.json();
-         console.log(data)
+       
 
             return { data: data, error: null }
         
@@ -180,6 +180,26 @@ getTutorsByCategory: async function (categoryId?: string): Promise<TutorResponse
     }
   },
 
+
+  updateTutor: async (tutorId: string, payload: any, cookieString: string) => {
+    try {
+      const res = await fetch(`${API_URL}/tutor/${tutorId}`, {
+        method: "PATCH", 
+        headers: {
+          "Content-Type": "application/json",
+          "Cookie": cookieString,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.message || "Update failed");
+      
+      return { data: result, error: null };
+    } catch (error: any) {
+      return { data: null, error: error.message };
+    }
+  },
 
 }
 

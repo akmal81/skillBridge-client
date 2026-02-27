@@ -7,22 +7,22 @@ export const tutorRoutes = [
         items: [
             {
                 title: "Profile",
-                url: "#",
+                url: "/tutor/dashboard",
                 icon:User
             },
             {
                 title: "Set Availability",
-                url: "#",
+                url: "/tutor/dashboard/set-availability",
                 icon:ClockCheck
             },
             {
                 title: "My Session",
-                url: "#",
+                url: "/tutor/dashboard/tutor-session",
                 icon:Calendar
             },
             {
                 title: "My Reviews",
-                url: "#",
+                url: "/tutor/dashboard/tutor-reviews",
                 icon:StarIcon
             },
         ],
